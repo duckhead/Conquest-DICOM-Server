@@ -1,0 +1,14 @@
+g++ -I/usr/local/pgsql/include -DUNIX -DNATIVE_ENDIAN=1 -DNOINTJPEG -DPOSTGRES total.cxx -o dgate -lpthread -L/usr/local/pgsql/lib -lpq
+pkill -9 dgate
+sleep 0.2s
+
+cp dicom.ini.postgres dicom.ini
+cp dicom.sql.postgres dicom.sql
+
+sudo cp dgate /usr/lib/cgi-bin
+sudo cp dicom.sql /usr/lib/cgi-bin
+sudo cp dicom.ini.www /usr/lib/cgi-bin/dicom.ini
+sudo cp sample.cq /usr/lib/cgi-bin
+
+sudo cp ActiveFormProj1.ocx /var/www
+sudo cp conquest.jpg /var/www

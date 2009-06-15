@@ -1,0 +1,16 @@
+gcc -c -DTHREADSAFE=1 sqlite3.c
+g++ -DUNIX -DNATIVE_ENDIAN=1 -DNOINTJPEG -DUSESQLITE total.cxx sqlite3.o -o dgate -lpthread -ldl
+rm sqlite3.o
+pkill -9 dgate
+sleep 0.2s
+
+cp dicom.ini.sqlite dicom.ini
+cp dicom.sql.sqlite dicom.sql
+
+sudo cp dgate /usr/lib/cgi-bin
+sudo cp dicom.sql /usr/lib/cgi-bin
+sudo cp dicom.ini.www /usr/lib/cgi-bin/dicom.ini
+sudo cp sample.cq /usr/lib/cgi-bin
+
+sudo cp ActiveFormProj1.ocx /var/www
+sudo cp conquest.jpg /var/www
